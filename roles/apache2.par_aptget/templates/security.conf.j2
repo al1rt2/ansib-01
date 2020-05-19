@@ -1,0 +1,15 @@
+# {{ansible_managed}}
+
+ServerTokens Prod
+ServerSignature Off
+TraceEnable Off
+
+Header always append X-Frame-Options SAMEORIGIN
+Header always set X-XSS-Protection "1; mode=block"
+Header always set X-Content-Type-Options nosniff
+Header always set Referrer-Policy "same-origin"
+Header always set Expect-CT "enforce, max-age=300, report-uri='https://xyz.report-uri.com/r/d/ct/enforce'"
+Header always set Feature-Policy "geolocation 'none'; midi 'none'; notifications 'none'; push 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker self;vibrate 'none'; fullscreen 'self'; payment 'none';"
+Header always set Access-Control-Allow-Origin "127.0.0.1"
+Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; frame-src 'none'; object-src 'none'"

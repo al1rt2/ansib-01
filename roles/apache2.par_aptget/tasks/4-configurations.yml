@@ -1,0 +1,32 @@
+---
+- name: security.yml | Configuring security.conf
+  template:
+    src: security.conf.j2
+    dest: /etc/apache2/conf-enabled/security.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  notify: restart apache2
+
+- name: apache2.yml | Changing Listen port to {{ apache2_listenport }}
+  lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: "{{ item.regexp }}"
+    insertafter: "{{ item.insertafter }}"
+    line: "{{ item.line }}"
+    state: present
+  with_items: "{{ apache_ports_configuration_items }}"
+  become: yes
+  notify: restart apache2
+
+- name: apache2-modules.yml | Enabling Apache2 Modules
+  file:
+    src: "/etc/apache2/mods-available/{{ item }}"
+    dest: "/etc/apache2/mods-enabled/{{ item }}"
+    state: link
+  with_items: "{{ apache_modules_enable }}"
+  become: yes
+
+- name: Flushing handlers
+  meta: flush_handlers

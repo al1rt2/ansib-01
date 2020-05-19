@@ -1,0 +1,5 @@
+---
+- hosts: servweb
+  roles:
+  -  apache2.par_aptget
+...

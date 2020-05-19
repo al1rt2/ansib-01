@@ -1,0 +1,19 @@
+---
+# Global Defaults
+
+apache2_listenport: 80
+
+apache_ports_configuration_items:
+ - regexp: "^Listen "
+   insertafter: "^#Listen "
+   line: "Listen {{ apache2_listenport }}"
+
+apache_modules_enable:
+ - rewrite.load
+ - headers.load
+ - env.load
+ - dir.load
+ - mime.load
+ - ssl.load
+ - setenvif.load
+ - actions.load

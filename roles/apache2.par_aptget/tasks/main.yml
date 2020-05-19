@@ -1,0 +1,13 @@
+---
+- name: Apache2 | Running pre-setup of packages
+  include_tasks: "1-initial.yml"
+
+- name: Apache2 | Setting Up Repository
+  include_tasks: "2-repository.yml"
+
+- name: Apache2 | Installing Apache2
+  include_tasks: "3-install.yml"
+
+- name: Apache2 | Applying Apache2 configurations
+  include_tasks: "4-configurations.yml"
+

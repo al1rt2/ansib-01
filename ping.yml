@@ -1,0 +1,4 @@
+- hosts: servweb
+  tasks:
+    - name: ping des serveurs
+      ping:

@@ -1,0 +1,8 @@
+---
+- name: firewall.yml | Allow Web traffic through UFW
+  ufw:
+    rule: allow
+    name: "WWW Full"
+  notify:
+    - restart apache2
+  become: yes

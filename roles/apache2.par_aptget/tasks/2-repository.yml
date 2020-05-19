@@ -1,0 +1,12 @@
+---
+- name: repository.yml | Adding Ondrej Sury's Apache2 apt key.
+  apt_key:
+    url: https://packages.sury.org/apache2/apt.gpg
+    state: present
+  become: yes
+
+- name: repository.yml | Adding Apache2 PPA
+  apt_repository:
+    repo: "deb https://packages.sury.org/apache2/ {{ ansible_distribution_release }} main"
+    state: present
+  become: yes
